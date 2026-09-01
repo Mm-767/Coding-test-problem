@@ -24,4 +24,19 @@
 8주차: 수학 및 필수 탐색 알고리즘 & 종합 복습
 학습 내용: 코딩 테스트 단골 유형인 소수 판별, 투 포인터, 구간 합 빠르게 계산하기 학습.
 
+## 폴더 구조
+
+| 주차 | 폴더 |
+| --- | --- |
+| 1주차 | `Week01_Greedy` |
+| 2주차 | `Week02_Implementation_Simulation` |
+| 3주차 | `Week03_DataStructures_DFS_BFS` |
+| 4주차 | `Week04_Sorting_BinarySearch` |
+| 5주차 | `Week05_Dynamic_Programming` |
+| 6주차 | `Week06_Shortest_Path` |
+| 7주차 | `Week07_Backend_Dev_Coding_Test` |
+| 8주차 | `Week08_Math_Search_Review` |
+
+각 폴더의 `README.md`에 주차별 학습 내용이 정리되어 있다.
+
 https://youtube.com/playlist?list=PLRx0vPvlEmdAghTr5mXQxGpHjWqSz0dgC&si=kq4v0SwwBVOm57eM
