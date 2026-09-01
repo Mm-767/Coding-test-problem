@@ -39,4 +39,9 @@
 
 각 폴더의 `README.md`에 주차별 학습 내용이 정리되어 있다.
 
+## 제출 방법
+
+풀이는 PR로 제출한다. 경로 규칙은 `WeekNN_.../<문제명>/<깃허브아이디>.확장자`.
+자세한 절차는 [CONTRIBUTING.md](CONTRIBUTING.md) 참고.
+
 https://youtube.com/playlist?list=PLRx0vPvlEmdAghTr5mXQxGpHjWqSz0dgC&si=kq4v0SwwBVOm57eM
