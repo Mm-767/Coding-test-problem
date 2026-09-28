@@ -40,12 +40,6 @@
 6. PR 제목: `[Week03] 미로 탈출 - minhun`
    - 한 주에 여러 문제를 풀었다면 PR 하나에 묶어도 된다.
 
-## 리뷰 규칙
-
-- 최소 **1명 이상 approve** 후 **본인이 Squash merge** 한다.
-- 리뷰어는 시간복잡도, 엣지 케이스, 더 간단한 접근 위주로 코멘트한다.
-- 리뷰는 배우려고 하는 것이니 편하게 남긴다.
-
 ## 주차별 폴더
 
 | 주차 | 폴더 |
@@ -63,10 +57,3 @@
 
 - API 키·토큰·비밀번호는 **절대 커밋하지 않는다.** 환경변수로 분리한다.
 - 예시 응답은 실제 호출 결과 대신 목업(mock) 데이터로 남긴다.
-
-## 스터디장이 할 일
-
-- GitHub → Settings → Collaborators 에서 부원 추가
-- Settings → Branches → `main` 보호 규칙 추가
-  - "Require a pull request before merging"
-  - "Require approvals: 1"
