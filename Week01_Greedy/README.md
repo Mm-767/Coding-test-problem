@@ -7,7 +7,7 @@
 
 ## 이번 주 문제 (프로그래머스 Lv1)
 
-위에서부터 쉬운 순서다. 풀이는 `Week01_Greedy/<문제명>/<깃허브아이디>.확장자` 로 PR 제출 ([제출 가이드](../CONTRIBUTING.md)).
+위에서부터 쉬운 순서다. 풀이는 `Week01_Greedy/<문제명>/<깃허브아이디>.java` 로 PR 제출 ([제출 가이드](../CONTRIBUTING.md)).
 
 | # | 문제 | 난이도 | 폴더명 |
 | --- | --- | --- | --- |
@@ -32,20 +32,23 @@
 
 **입력 크기 N이 커질 때 연산 횟수가 얼마나 빨리 늘어나는지**를 나타낸 것이다. 가장 크게 늘어나는 항만 남겨 빅오(Big-O)로 쓴다.
 
-```python
-for x in arr:          # N번 → O(N)
+```java
+for (int x : arr) {          // N번 → O(N)
     ...
+}
 
-for x in arr:          # N × N번 → O(N²)
-    for y in arr:
+for (int x : arr) {          // N × N번 → O(N²)
+    for (int y : arr) {
         ...
+    }
+}
 
-arr.sort()             # O(N log N)
+Arrays.sort(arr);            // O(N log N)
 ```
 
 ### 입력 크기로 허용되는 복잡도 가늠하기
 
-파이썬은 대략 **1초에 1천만~2천만 번** 정도의 단순 연산을 한다고 잡는다. 문제의 제한사항에서 N의 최댓값을 보고 아래 표로 먼저 거른다.
+Java는 대략 **1초에 1억 번** 안팎의 단순 연산을 한다고 잡는다. 문제의 제한사항에서 N의 최댓값을 보고 아래 표로 먼저 거른다.
 
 | N의 최댓값 | 안전한 복잡도 |
 | --- | --- |
@@ -56,16 +59,16 @@ arr.sort()             # O(N log N)
 
 예) 과일 장수는 `score` 길이가 최대 1,000,000이다. 모든 쌍을 비교하는 O(N²)은 10¹²번이라 불가능하고, 정렬 O(N log N)은 가능하다.
 
-### 파이썬 연산별 복잡도 (자주 틀리는 것)
+### Java 연산별 복잡도 (자주 틀리는 것)
 
 | 연산 | 복잡도 | 비고 |
 | --- | --- | --- |
-| `list.append(x)`, `list.pop()` | O(1) | 맨 뒤 추가/삭제 |
-| `list.pop(0)`, `list.insert(0, x)` | **O(N)** | 맨 앞은 느리다 |
-| `x in list`, `list.remove(x)` | **O(N)** | 처음부터 하나씩 찾는다 |
-| `x in set`, `x in dict` | O(1) | 자주 찾을 거면 set으로 바꾸기 |
-| `sorted(a)`, `a.sort()` | O(N log N) | |
-| `len(a)` | O(1) | |
+| `list.add(x)`, `list.get(i)` | O(1) | `ArrayList` 맨 뒤 추가, 인덱스 접근 |
+| `list.add(0, x)`, `list.remove(0)` | **O(N)** | 맨 앞에 넣고 빼면 뒤 원소를 전부 민다 |
+| `list.contains(x)`, `list.indexOf(x)` | **O(N)** | 처음부터 하나씩 찾는다 |
+| `set.contains(x)`, `map.get(k)`, `map.containsKey(k)` | O(1) | `HashSet`, `HashMap`. 자주 찾을 거면 이쪽으로 |
+| `Arrays.sort(a)`, `Collections.sort(list)` | O(N log N) | |
+| `a.length`, `list.size()` | O(1) | |
 
 ---
 
@@ -95,34 +98,39 @@ PR에는 **3번에서 왜 그 기준이 맞는지**를 한 문장으로 적는�
 
 ---
 
-## 3. 자주 쓰는 문법
+## 3. 자주 쓰는 Java 문법
 
-프로그래머스는 입력을 직접 받지 않는다. `solution` 함수의 **매개변수로 입력이 들어오고, 답을 `return`** 하면 된다.
+프로그래머스는 입력을 직접 받지 않는다. `solution` 메서드의 **매개변수로 입력이 들어오고, 답을 `return`** 하면 된다. `Arrays`, `HashSet` 등을 쓰려면 맨 위에 `import java.util.*;` 를 직접 적는다.
 
-```python
-def solution(d, budget):
-    answer = 0
-    # ...
-    return answer
+```java
+import java.util.*;
+
+class Solution {
+    public int solution(int[] d, int budget) {
+        int answer = 0;
+        // ...
+        return answer;
+    }
+}
 ```
 
-| 하고 싶은 것 | Python | Java |
-| --- | --- | --- |
-| 오름차순 정렬 | `a.sort()` / `sorted(a)` | `Arrays.sort(a)` |
-| 내림차순 정렬 | `a.sort(reverse=True)` | `Arrays.sort(a, Collections.reverseOrder())` (`Integer[]`만 가능) |
-| 기준을 정해 정렬 | `a.sort(key=lambda x: x[1])` | `Arrays.sort(a, (x, y) -> Integer.compare(x[1], y[1]))` |
-| 최솟값 / 최댓값 / 합 | `min(a)`, `max(a)`, `sum(a)` | `Math.min(x, y)`, `Arrays.stream(a).sum()` |
-| 몫 / 나머지 | `a // b`, `a % b` | `a / b`, `a % b` (정수끼리) |
-| k칸씩 건너뛰기 | `a[start::k]` | `for (int i = start; i < n; i += k)` |
-| 빠르게 포함 여부 확인 | `s = set(a)`, `x in s` | `Set<Integer> s = new HashSet<>()`, `s.contains(x)` |
-| 교집합 / 차집합 | `set(a) & set(b)`, `set(a) - set(b)` | `s.retainAll(t)`, `s.removeAll(t)` |
+| 하고 싶은 것 | 코드 |
+| --- | --- |
+| 오름차순 정렬 | `Arrays.sort(a);` |
+| 내림차순 정렬 (`int[]`) | 오름차순 정렬 후 뒤에서부터 읽기: `for (int i = a.length - 1; i >= 0; i--)` |
+| 내림차순 정렬 (`Integer[]`) | `Arrays.sort(b, Collections.reverseOrder());` |
+| `int[]` → `Integer[]` | `Integer[] b = Arrays.stream(a).boxed().toArray(Integer[]::new);` |
+| 기준을 정해 정렬 (2차원 배열) | `Arrays.sort(p, (x, y) -> Integer.compare(x[1], y[1]));` |
+| 리스트 정렬 | `Collections.sort(list);` / `list.sort(Comparator.reverseOrder());` |
+| 최솟값 / 최댓값 | `Math.min(x, y)`, `Math.max(x, y)` |
+| 배열 합 | `Arrays.stream(a).sum()` |
+| 몫 / 나머지 | `a / b`, `a % b` (정수끼리 나누면 소수점 버림: `7 / 2 == 3`) |
+| k칸씩 건너뛰기 | `for (int i = start; i < n; i += k)` |
+| 빠르게 포함 여부 확인 | `Set<Integer> s = new HashSet<>();` → `s.add(x);`, `s.contains(x)` |
+| 교집합 / 차집합 | `s.retainAll(t);` / `s.removeAll(t);` (`s` 자체가 바뀐다) |
 
----
+### Java에서 자주 틀리는 것
 
-## 참고 자료
-
-- [코딩 테스트에 자주 나오는 Big O 알고리즘 복잡도 - 알고달레](https://www.algodale.com/guides/big-o-complexities/): O(1)부터 O(N!)까지 예시 코드와 함께 정리
-- [TimeComplexity - Python Wiki](https://wiki.python.org/moin/TimeComplexity) (영문): list, set, dict 연산별 공식 복잡도 표
-- [탐욕 알고리즘 - 위키백과](https://ko.wikipedia.org/wiki/탐욕_알고리즘): 탐욕 선택 속성, 최적 부분 구조 정의
-- [정렬 기법 - 파이썬 공식 문서](https://docs.python.org/ko/3/howto/sorting.html): `key`, `reverse`, 여러 기준 정렬
-- [코딩테스트를 위한 Python 정리 - choiiis Devlog](https://choiiis.github.io/python/for-coding-test/): 자료형과 내장 함수 치트시트
+- **`int` 오버플로**: `int` 최댓값은 약 21억(2,147,483,647)이다. 20억 + 20억은 음수가 된다. 곱하거나 많이 더할 때는 `long answer = 0;`, `(long) a * b` 처럼 `long` 으로 계산한다. `Arrays.stream(a).sum()` 도 `int` 라서 넘칠 수 있으니 `Arrays.stream(a).asLongStream().sum()` 을 쓴다.
+- **정렬 기준을 `x[1] - y[1]` 로 쓰기**: 값이 크면 뺄셈이 넘쳐 순서가 뒤집힌다. `Integer.compare(x[1], y[1])` 을 쓴다.
+- **`Integer` 끼리 `==` 비교**: `Integer` 128 == 128 은 `false` 다 (-128 ~ 127 만 같은 객체로 캐시됨). `Integer` 끼리는 `.equals()` 로 비교한다.
