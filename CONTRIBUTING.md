@@ -23,11 +23,12 @@
    ```
 3. 풀이 파일을 규칙에 맞는 경로에 추가한다.
    ```
-   Week03_DataStructures_DFS_BFS/미로 탈출/minhun.py
+   Week03_DataStructures_DFS_BFS/미로 탈출/minhun.java
    ```
-   - 경로 규칙: `WeekNN_.../<문제명>/<깃허브아이디>.확장자`
+   - 경로 규칙: `WeekNN_.../<문제명>/<깃허브아이디>.java`
    - 폴더가 없으면 새로 만든다. 문제명은 한글 그대로 쓴다.
-   - 언어는 자유(`.py`, `.java`, `.js` 등). **한 문제당 본인 파일 1개.**
+   - 언어는 **Java** 로 통일한다. **한 문제당 본인 파일 1개.**
+   - 프로그래머스 코드 그대로 `class Solution` 으로 올린다. `public class Solution` 으로 바꾸면 파일명과 달라 컴파일 오류가 난다.
 4. 커밋한다.
    ```bash
    git add .
